@@ -5,5 +5,5 @@ export const loginUser = (data : any) => {
 }
 
 export const registrationUser = (data : any) => {
-    return apiClient.post("/api/user/registration", data);
+    return apiClient.post("/api/user/register", data);
 }
