@@ -1,53 +1,27 @@
 "use client";
 
-import { loginUser } from "@/services/authService";
-import React, { useState } from "react";
-
-interface LoginData {
-  email: string;
-  password: string;
-}
+import { useLogin } from "./hooks/useLogin";
 
 const Login = () => {
-  const [loginData, setLoginData] = useState<LoginData>({
-    email: "",
-    password: "",
-  });
 
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const loginForm = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      setLoading(true);
-      const response = await loginUser(loginData);
-      console.log(response);
-    } catch (error) {
-      console.error("Login Failed", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    loginForm,
+    loginData,
+    handleChange,
+    loading
+  } = useLogin();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      
+
       <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-        
+
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Login to JobSearch
         </h2>
 
         <form onSubmit={loginForm} className="space-y-5">
-          
+
           {/* Username */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
