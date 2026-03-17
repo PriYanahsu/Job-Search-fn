@@ -2,6 +2,7 @@
 
 import { registrationUser } from "@/services/authService";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface RegisterData {
     name: string;
@@ -40,11 +41,14 @@ export function useRegistration() {
 
             console.log(registerData);
 
-            const response = registrationUser(registerData);
+            const response = await registrationUser(registerData);
             console.log(response, "response");
+            toast.success("Registration successful! You can now log in.");
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Registration Failed", error);
+            const message = error.response?.data?.message || "Registration failed. Please try again.";
+            toast.error(message);
         } finally {
             setLoading(false);
         }
