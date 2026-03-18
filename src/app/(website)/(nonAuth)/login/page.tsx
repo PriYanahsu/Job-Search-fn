@@ -1,10 +1,11 @@
 import Login from '@/features/Login/Login'
+import { Suspense } from 'react'
 
 const page = () => {
   return (
-    <div>
+    <Suspense fallback={<div className="min-h-screen bg-[var(--page-bg)]" />}>
       <Login />
-    </div>
+    </Suspense>
   )
 }
 

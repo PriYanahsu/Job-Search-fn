@@ -21,12 +21,13 @@ export const InputBox = ({
     size = "md",
     ...props
 }: InputBoxProps) => {
-    const baseStyle = "w-full border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition";
+    const baseStyle =
+        "w-full rounded-lg border border-slate-200 bg-white shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15 outline-none transition";
 
     return (
         <div className="w-full">
             {label && (
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
                     {label}
                 </label>
             )}

@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+:root {
+  --page-bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --brand: #2563eb;
+  --brand-2: #1d4ed8;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+/* Better default focus without fighting Tailwind */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--brand) 60%, white);
+  outline-offset: 2px;
+}
