@@ -3,6 +3,7 @@
 import { registrationUser } from "@/services/authService";
 import { useState } from "react";
 import { toast } from "sonner";
+import axios from "axios";
 
 interface RegisterData {
     name: string;
@@ -39,15 +40,15 @@ export function useRegistration() {
         try {
             setLoading(true);
 
-            console.log(registerData);
-
             const response = await registrationUser(registerData);
-            console.log(response, "response");
             toast.success("Registration successful! You can now log in.");
 
-        } catch (error: any) {
-            console.error("Registration Failed", error);
-            const message = error.response?.data?.message || "Registration failed. Please try again.";
+        } catch (error: unknown) {
+            const message =
+                axios.isAxiosError(error)
+                    ? (error.response?.data as { message?: string } | undefined)?.message ??
+                      "Registration failed. Please try again."
+                    : "Registration failed. Please try again.";
             toast.error(message);
         } finally {
             setLoading(false);
