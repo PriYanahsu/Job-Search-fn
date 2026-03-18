@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getAccessToken, getRole, type AuthRole } from "@/lib/authStorage";
+import { getAccessToken, getRole, type AuthRole, clearAccessToken, clearUserId, clearRole } from "@/lib/authStorage";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
   const pathname = usePathname();
@@ -27,6 +28,8 @@ export function SiteHeader() {
   const [authed, setAuthed] = useState(false);
   const [role, setRole] = useState<AuthRole | null>(null);
 
+  const router = useRouter();
+
   useEffect(() => {
     setMounted(true);
     setAuthed(!!getAccessToken());
@@ -39,6 +42,15 @@ export function SiteHeader() {
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
   }, []);
+
+  const handleLogout = () => {
+    clearAccessToken();
+    clearUserId();
+    clearRole();
+    setAuthed(false);
+    setRole(null);
+    router.push("/login");
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur">
@@ -76,27 +88,37 @@ export function SiteHeader() {
 
           <nav className="hidden items-center gap-6 md:flex">
             <NavLink href="/" label="Jobs" />
-            <NavLink href="/#companies" label="Companies" />
-            <NavLink href="/#services" label="Services" />
+            <NavLink href="/companies" label="Companies" />
+            <NavLink href="/services" label="Services" />
             {authed && role === "owner" && <NavLink href="/add-job" label="Post a job" />}
           </nav>
         </div>
 
         <div className="flex items-center gap-2">
-          {!authed && (
-            <Link
-              href="/login"
-              className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 md:inline-flex"
-            >
-              Login
-            </Link>
+          {mounted && !authed && (
+            <>
+              <Link
+                href="/login"
+                className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 md:inline-flex"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700"
+              >
+                Register
+              </Link>
+            </>
           )}
-          <Link
-            href="/register"
-            className="inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700"
-          >
-            Register
-          </Link>
+          {mounted && authed && (
+            <button
+              onClick={handleLogout}
+              className="inline-flex items-center rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </header>

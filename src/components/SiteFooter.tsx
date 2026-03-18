@@ -23,7 +23,7 @@ export function SiteFooter() {
             <li>
               <Link
                 className="text-slate-600 hover:text-slate-900"
-                href="/#companies"
+                href="/companies"
               >
                 Companies
               </Link>
@@ -31,7 +31,7 @@ export function SiteFooter() {
             <li>
               <Link
                 className="text-slate-600 hover:text-slate-900"
-                href="/#services"
+                href="/services"
               >
                 Services
               </Link>
@@ -63,13 +63,13 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
           <span>© {new Date().getFullYear()} JobSearch. All rights reserved.</span>
           <div className="flex gap-4">
-            <Link className="hover:text-slate-700" href="#">
+            <Link className="hover:text-slate-700" href="/privacy">
               Privacy
             </Link>
-            <Link className="hover:text-slate-700" href="#">
+            <Link className="hover:text-slate-700" href="/terms">
               Terms
             </Link>
-            <Link className="hover:text-slate-700" href="#">
+            <Link className="hover:text-slate-700" href="/contact">
               Contact
             </Link>
           </div>
