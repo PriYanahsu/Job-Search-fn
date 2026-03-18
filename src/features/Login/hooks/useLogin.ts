@@ -34,12 +34,11 @@ export function useLogin(){
         process.env.NEXT_PUBLIC_OWNER_PASSWORD ?? "Priyanshu@1265";
       const ownerEmail = process.env.NEXT_PUBLIC_OWNER_EMAIL?.toLowerCase()?? "priyanshu@gmail.com";
 
-      const identifier = loginData.email.trim().toLowerCase(); // UI allows owner name too
+      const identifier = loginData.email.trim().toLowerCase();
       const isOwnerLogin =
         loginData.password === ownerPassword &&
         (ownerEmail ? identifier === ownerEmail : identifier === ownerName);
 
-      // Backend accepts email+password only. If user typed owner name, map it to real owner email.
       if (identifier === ownerName && !ownerEmail) {
         toast.error("Set NEXT_PUBLIC_OWNER_EMAIL to enable owner login.");
         return false;
@@ -49,7 +48,6 @@ export function useLogin(){
         email: identifier === ownerName ? (ownerEmail as string) : identifier,
         password: loginData.password,
       });
-      console.log(response);
       const token = response.data?.accessToken;
       if (token) setAccessToken(token);
       if (typeof response.data?.userId === "number") setUserId(response.data.userId);
@@ -57,7 +55,6 @@ export function useLogin(){
       toast.success("Login successful! Welcome back.");
       return true;
     } catch (error: unknown) {
-      console.error("Login Failed", error);
       const message =
         axios.isAxiosError(error)
           ? (error.response?.data as { message?: string } | undefined)?.message ??

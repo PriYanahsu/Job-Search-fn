@@ -40,14 +40,10 @@ export function useRegistration() {
         try {
             setLoading(true);
 
-            console.log(registerData);
-
             const response = await registrationUser(registerData);
-            console.log(response, "response");
             toast.success("Registration successful! You can now log in.");
 
         } catch (error: unknown) {
-            console.error("Registration Failed", error);
             const message =
                 axios.isAxiosError(error)
                     ? (error.response?.data as { message?: string } | undefined)?.message ??
