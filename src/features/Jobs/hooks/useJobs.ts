@@ -20,8 +20,17 @@ export function useJobs(query: JobsQuery) {
         setLoading(true);
         setError(null);
         const data = await getAllJobs();
-        console.log(data, "data");
-        if (!cancelled) setJobs(data ?? []);
+        console.log("Job data received:", data);
+        if (!cancelled) {
+          if (Array.isArray(data)) {
+            setJobs(data);
+          } else if (data && typeof data === "object" && Array.isArray((data as any).data)) {
+            setJobs((data as any).data);
+          } else {
+            console.warn("getAllJobs returned non-array data:", data);
+            setJobs([]);
+          }
+        }
       } catch (e) {
         if (!cancelled)
           setError(e instanceof Error ? e.message : "Failed to load jobs");
