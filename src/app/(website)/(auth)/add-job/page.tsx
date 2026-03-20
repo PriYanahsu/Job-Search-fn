@@ -1,7 +1,6 @@
 "use client";
 
 import { InputBox } from "@/components/InputBox";
-import { SiteHeader } from "@/components/SiteHeader";
 import { getAccessToken, isOwner } from "@/lib/authStorage";
 import { addJob } from "@/services/jobsService";
 import { useRouter } from "next/navigation";
@@ -38,8 +37,6 @@ export default function Page() {
 
   return (
     <div className="min-h-screen">
-      <SiteHeader />
-
       <main className="mx-auto max-w-3xl px-4 py-8">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">

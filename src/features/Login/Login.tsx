@@ -1,7 +1,6 @@
 "use client";
 
 import { InputBox } from "@/components/InputBox";
-import { SiteHeader } from "@/components/SiteHeader";
 import { useLogin } from "./hooks/useLogin";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -15,8 +14,6 @@ const Login = () => {
   return (
     <>
       <div className="min-h-screen">
-        <SiteHeader />
-
         <main className="mx-auto grid max-w-6xl gap-5 px-4 py-8 md:grid-cols-[1fr_420px] md:items-start">
           <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">

@@ -1,7 +1,6 @@
 "use client";
 
 import { InputBox } from "@/components/InputBox";
-import { SiteHeader } from "@/components/SiteHeader";
 import { useRegistration } from "./hooks/useRegistration";
 import Link from "next/link";
 
@@ -12,8 +11,6 @@ const Registration = () => {
   return (
     <>
       <div className="min-h-screen">
-        <SiteHeader />
-
         <main className="mx-auto grid max-w-6xl gap-5 px-4 py-8 md:grid-cols-[420px_1fr] md:items-start">
           <aside className="order-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:order-1">
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">

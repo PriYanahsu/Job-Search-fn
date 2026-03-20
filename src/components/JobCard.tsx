@@ -9,10 +9,12 @@ export function JobCard({
   job,
   onApply,
   applying,
+  applied,
 }: {
   job: JobCardModel;
   onApply: (jobId: number) => void;
   applying?: boolean;
+  applied?: boolean;
 }) {
   return (
     <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
@@ -61,10 +63,13 @@ export function JobCard({
           <button
             type="button"
             onClick={() => onApply(job.id)}
-            disabled={applying}
-            className="inline-flex rounded-lg bg-blue-600 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
+            disabled={applying || applied}
+            className={[
+              "inline-flex rounded-lg px-3 py-2 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70",
+              applied ? "bg-emerald-600" : "bg-blue-600 hover:bg-blue-700",
+            ].join(" ")}
           >
-            {applying ? "Applying..." : "Apply"}
+            {applying ? "Applying..." : applied ? "Applied" : "Apply"}
           </button>
         </div>
       </div>

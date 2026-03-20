@@ -1,7 +1,5 @@
 "use client";
 
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 
 const services = [
   {
@@ -48,8 +46,6 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <SiteHeader />
-
       <main className="mx-auto max-w-6xl px-4 py-12 md:py-20 text-center">
         <div className="mx-auto max-w-2xl">
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 md:text-5xl">
@@ -106,8 +102,6 @@ export default function ServicesPage() {
           </button>
         </section>
       </main>
-
-      <SiteFooter />
     </div>
   );
 }

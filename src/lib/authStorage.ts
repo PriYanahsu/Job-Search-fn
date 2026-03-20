@@ -11,10 +11,22 @@ export function clearAccessToken() {
 }
 
 export function getUserId() {
-  const raw = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
-  if (!raw) return null;
-  const n = Number(raw);
-  return Number.isFinite(n) ? n : null;
+  if (typeof window === "undefined") return null;
+
+  const candidates = [
+    localStorage.getItem("userId"),
+    localStorage.getItem("userID"),
+    localStorage.getItem("user_id"),
+    localStorage.getItem("id"),
+  ];
+
+  for (const raw of candidates) {
+    if (!raw) continue;
+    const n = Number(raw);
+    if (Number.isFinite(n)) return n;
+  }
+
+  return null;
 }
 
 export function setUserId(userId: number) {

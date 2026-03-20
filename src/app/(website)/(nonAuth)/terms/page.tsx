@@ -1,10 +1,6 @@
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white">
-      <SiteHeader />
       <main className="mx-auto max-w-4xl px-4 py-16 md:py-24">
         <h1 className="text-4xl font-bold tracking-tight text-slate-900">Terms of Service</h1>
         <p className="mt-4 text-slate-500">Last updated: March 2026</p>
@@ -39,7 +35,6 @@ export default function TermsPage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
     </div>
   );
 }

@@ -1,7 +1,5 @@
 "use client";
 
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -62,8 +60,6 @@ export default function CompaniesPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <SiteHeader />
-
       <main className="mx-auto max-w-6xl px-4 py-12">
         <header className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-xl">
@@ -139,8 +135,6 @@ export default function CompaniesPage() {
           </div>
         )}
       </main>
-
-      <SiteFooter />
     </div>
   );
 }
