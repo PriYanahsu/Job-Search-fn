@@ -17,9 +17,15 @@ export function useApplyJob() {
 
     try {
       setLoadingJobId(jobId);
-      await applyJob({ userId, jobId });
-      toast.success("Applied successfully.");
-      return { ok: true as const };
+      const data =await applyJob({ userId, jobId });
+      if(data as string === "Application Successfully applied"){
+        toast.success("Applied successfully.");
+        return { ok: true as const };
+      }else if(data as string === "You have already applied to this job!"){
+        toast.error("You have already applied to this job!");
+        return {ok: false as const, reason: "ALREADY_APPLIED" as cont}
+      }
+
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to apply.");
       return { ok: false as const, reason: "ERROR" as const };

@@ -1,7 +1,5 @@
 "use client";
 
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -61,16 +59,14 @@ export default function CompaniesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <SiteHeader />
-
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <main className="mx-auto max-w-6xl px-4 py-12">
         <header className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-4xl">
               Explore Top Companies
             </h1>
-            <p className="mt-3 text-lg text-slate-600">
+            <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
               Discover industry leaders and find your next workplace culture that fits.
             </p>
           </div>
@@ -80,40 +76,40 @@ export default function CompaniesPage() {
               placeholder="Search companies..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm shadow-sm transition-all focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15"
+              className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm shadow-sm transition-all focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500"
             />
           </div>
         </header>
 
         <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredCompanies.map((company) => (
-            <div key={company.id} className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-md">
+            <div key={company.id} className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
               <div className="flex items-center gap-4">
                 <div className={`${company.color} flex h-14 w-14 items-center justify-center rounded-xl text-xl font-bold text-white`}>
                   {company.logo}
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                  <h2 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-slate-100">
                     {company.name}
                   </h2>
-                  <p className="text-sm font-medium text-slate-500">{company.industry}</p>
+                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{company.industry}</p>
                 </div>
               </div>
               
-              <div className="mt-6 flex-grow">
-                <p className="text-sm leading-relaxed text-slate-600">
+              <div className="mt-6 grow">
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                   {company.description}
                 </p>
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-4 border-t border-slate-100 pt-6">
+              <div className="mt-6 grid grid-cols-2 gap-4 border-t border-slate-100 pt-6 dark:border-slate-800">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">HQ</p>
-                  <p className="mt-1 text-xs font-semibold text-slate-700">{company.hq}</p>
+                  <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">{company.hq}</p>
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Employees</p>
-                  <p className="mt-1 text-xs font-semibold text-slate-700">{company.employees}</p>
+                  <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">{company.employees}</p>
                 </div>
               </div>
 
@@ -129,18 +125,16 @@ export default function CompaniesPage() {
 
         {filteredCompanies.length === 0 && (
           <div className="py-20 text-center">
-            <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+            <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500">
               <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-slate-900">No companies found</h3>
-            <p className="mt-2 text-slate-500">Try searching for a different name or industry.</p>
+            <h3 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-100">No companies found</h3>
+            <p className="mt-2 text-slate-500 dark:text-slate-400">Try searching for a different name or industry.</p>
           </div>
         )}
       </main>
-
-      <SiteFooter />
     </div>
   );
 }

@@ -1,7 +1,5 @@
 "use client";
 
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -14,7 +12,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <SiteHeader />
       <main className="mx-auto max-w-6xl px-4 py-12 md:py-24">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
@@ -128,7 +125,6 @@ export default function ContactPage() {
           </div>
         </div>
       </main>
-      <SiteFooter />
     </div>
   );
 }

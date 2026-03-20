@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { getAccessToken, getRole, type AuthRole, clearAccessToken, clearUserId, clearRole } from "@/lib/authStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
   const pathname = usePathname();
@@ -15,7 +16,9 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
       href={href}
       className={[
         "text-sm font-medium transition-colors",
-        active ? "text-slate-900" : "text-slate-600 hover:text-slate-900",
+        active
+          ? "text-slate-900 dark:text-slate-100"
+          : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100",
       ].join(" ")}
     >
       {label}
@@ -24,14 +27,12 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
 };
 
 export function SiteHeader() {
-  const [mounted, setMounted] = useState(false);
   const [authed, setAuthed] = useState(false);
   const [role, setRole] = useState<AuthRole | null>(null);
 
   const router = useRouter();
 
   useEffect(() => {
-    setMounted(true);
     setAuthed(!!getAccessToken());
     setRole(getRole());
 
@@ -53,9 +54,9 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-blue-600 text-white">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -81,7 +82,7 @@ export function SiteHeader() {
                 />
               </svg>
             </span>
-            <span className="text-[15px] font-semibold tracking-tight text-slate-900">
+            <span className="text-[15px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               JobSearch
             </span>
           </Link>
@@ -95,11 +96,12 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-2">
-          {mounted && !authed && (
+          <ThemeToggle />
+          {!authed && (
             <>
               <Link
                 href="/login"
-                className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 md:inline-flex"
+                className="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 md:inline-flex"
               >
                 Login
               </Link>
@@ -111,14 +113,24 @@ export function SiteHeader() {
               </Link>
             </>
           )}
-          {mounted && authed && (
+          {authed && (
             <button
               onClick={handleLogout}
-              className="inline-flex items-center rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+              className="inline-flex items-center rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200"
             >
               Logout
             </button>
           )}
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200 px-4 py-2 dark:border-slate-800 md:hidden">
+        <div className="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto">
+          <NavLink href="/" label="Jobs" />
+          <NavLink href="/companies" label="Companies" />
+          <NavLink href="/services" label="Services" />
+          {authed && role === "owner" && <NavLink href="/add-job" label="Post a job" />}
+          <NavLink href="/contact" label="Contact" />
         </div>
       </div>
     </header>

@@ -1,7 +1,6 @@
 "use client";
 
 import { InputBox } from "@/components/InputBox";
-import { SiteHeader } from "@/components/SiteHeader";
 import { useRegistration } from "./hooks/useRegistration";
 import Link from "next/link";
 
@@ -12,22 +11,20 @@ const Registration = () => {
   return (
     <>
       <div className="min-h-screen">
-        <SiteHeader />
-
         <main className="mx-auto grid max-w-6xl gap-5 px-4 py-8 md:grid-cols-[420px_1fr] md:items-start">
-          <aside className="order-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:order-1">
+          <aside className="order-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:order-1">
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
               Create profile once
             </div>
-            <h2 className="mt-3 text-xl font-bold tracking-tight text-slate-900">
+            <h2 className="mt-3 text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
               Get discovered by recruiters
             </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
               Build your profile and let top companies reach out. Apply to jobs
               with fewer clicks.
             </p>
 
-            <div className="mt-6 space-y-3 text-sm text-slate-700">
+            <div className="mt-6 space-y-3 text-sm text-slate-700 dark:text-slate-300">
               {[
                 "Personalised job recommendations",
                 "One-click apply with your profile",
@@ -40,21 +37,21 @@ const Registration = () => {
               ))}
             </div>
 
-            <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <div className="text-sm font-semibold text-slate-900">
+            <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                 Tip: faster shortlisting
               </div>
-              <p className="mt-1 text-sm text-slate-600">
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
                 Add your top skills and preferred location to improve matches.
               </p>
             </div>
           </aside>
 
-          <section className="order-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:order-2">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <section className="order-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:order-2">
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
               Create your account
             </h1>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
               Start searching and applying in under a minute.
             </p>
 
@@ -96,7 +93,7 @@ const Registration = () => {
                 required
               />
 
-              <p className="text-xs leading-5 text-slate-500">
+              <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
                 By creating an account you agree to our{" "}
                 <Link href="#" className="font-semibold text-blue-700">
                   Terms
@@ -116,7 +113,7 @@ const Registration = () => {
                 {loading ? "Creating account..." : "Create account"}
               </button>
 
-              <p className="text-center text-sm text-slate-600">
+              <p className="text-center text-sm text-slate-600 dark:text-slate-300">
                 Already have an account?{" "}
                 <Link
                   href="/login"

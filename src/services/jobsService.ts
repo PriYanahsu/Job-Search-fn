@@ -19,3 +19,15 @@ export async function addJob(payload: AddJobPayload) {
   return res.data as unknown;
 }
 
+export type AppliedJobModel = {
+  jobId: number;
+  status?: string;
+};
+
+export async function getAppliedJobs(userId: number) {
+  const res = await apiClient.get<AppliedJobModel[] | { data?: AppliedJobModel[] }>(
+    `/api/jobs/applied/${userId}`
+  );
+  return res.data;
+}
+
