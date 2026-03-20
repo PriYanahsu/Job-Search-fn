@@ -39,26 +39,26 @@ export default function JobsLandingPage() {
       <SiteHeader />
 
       <main className="mx-auto max-w-6xl px-4 py-6">
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300">
                 Jobs · Updated daily
               </div>
-              <h1 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              <h1 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-3xl">
                 Find your next job
               </h1>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                 Real jobs from your backend. Search by title, description, or
                 skills.
               </p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <div className="text-sm font-semibold text-slate-900">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                 Quick tips
               </div>
-              <div className="mt-2 text-xs text-slate-600">
+              <div className="mt-2 text-xs text-slate-600 dark:text-slate-300">
                 Add skills in your profile for better matching.
               </div>
             </div>
@@ -73,10 +73,10 @@ export default function JobsLandingPage() {
                 if (loc) params.set("loc", loc);
                 router.replace(params.toString() ? `/?${params}` : "/");
               }}
-              className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm md:grid-cols-[1.2fr_1fr_auto] md:items-end md:gap-4"
+              className="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 md:grid-cols-[1.2fr_1fr_auto] md:items-end md:gap-4"
             >
               <div>
-                <label className="text-xs font-semibold text-slate-700">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Job title / Skills
                 </label>
                 <input
@@ -84,12 +84,12 @@ export default function JobsLandingPage() {
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="e.g. spring boot, react"
-                  className="mt-2 h-11 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15"
+                  className="mt-2 h-11 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-700">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Location (optional)
                 </label>
                 <input
@@ -97,7 +97,7 @@ export default function JobsLandingPage() {
                   value={loc}
                   onChange={(e) => setLoc(e.target.value)}
                   placeholder="(optional)"
-                  className="mt-2 h-11 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15"
+                  className="mt-2 h-11 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500"
                 />
               </div>
 
@@ -115,12 +115,12 @@ export default function JobsLandingPage() {
           <JobFilters />
 
           <div className="space-y-4">
-            <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <div className="text-sm font-semibold text-slate-900">
+                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                   Jobs
                 </div>
-                <div className="mt-1 text-xs text-slate-600">
+                <div className="mt-1 text-xs text-slate-600 dark:text-slate-400">
                   {loading ? "Loading..." : `Showing ${jobs.length} jobs`}
                 </div>
               </div>
@@ -137,21 +137,21 @@ export default function JobsLandingPage() {
                 Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="h-[132px] animate-pulse rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                    className="h-[132px] animate-pulse rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
                   >
-                    <div className="h-4 w-2/3 rounded bg-slate-200" />
-                    <div className="mt-3 h-3 w-full rounded bg-slate-200" />
-                    <div className="mt-2 h-3 w-5/6 rounded bg-slate-200" />
+                    <div className="h-4 w-2/3 rounded bg-slate-200 dark:bg-slate-700" />
+                    <div className="mt-3 h-3 w-full rounded bg-slate-200 dark:bg-slate-700" />
+                    <div className="mt-2 h-3 w-5/6 rounded bg-slate-200 dark:bg-slate-700" />
                     <div className="mt-4 flex gap-2">
-                      <div className="h-6 w-16 rounded-full bg-slate-200" />
-                      <div className="h-6 w-20 rounded-full bg-slate-200" />
-                      <div className="h-6 w-24 rounded-full bg-slate-200" />
+                      <div className="h-6 w-16 rounded-full bg-slate-200 dark:bg-slate-700" />
+                      <div className="h-6 w-20 rounded-full bg-slate-200 dark:bg-slate-700" />
+                      <div className="h-6 w-24 rounded-full bg-slate-200 dark:bg-slate-700" />
                     </div>
                   </div>
                 ))}
 
               {!loading && jobs.length === 0 && !error && (
-                <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
+                <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
                   No jobs found.
                 </div>
               )}

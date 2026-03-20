@@ -2,7 +2,6 @@
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useState } from "react";
 
 const services = [
   {
@@ -48,22 +47,22 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <SiteHeader />
 
       <main className="mx-auto max-w-6xl px-4 py-12 md:py-20 text-center">
         <div className="mx-auto max-w-2xl">
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 md:text-5xl">
             Level Up Your Career
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             Professional services designed to give you a competitive edge in your job search and beyond.
           </p>
         </div>
 
         <section className="mt-16 grid gap-8 md:grid-cols-3">
           {services.map((service) => (
-            <div key={service.id} className="relative flex flex-col rounded-3xl border border-slate-200 bg-white p-8 text-left shadow-sm transition-all hover:shadow-xl">
+            <div key={service.id} className="relative flex flex-col rounded-3xl border border-slate-200 bg-white p-8 text-left shadow-sm transition-all hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
               {service.tag && (
                 <div className="absolute -top-3 left-8 rounded-full bg-blue-600 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                   {service.tag}
@@ -74,16 +73,16 @@ export default function ServicesPage() {
                 {service.icon}
               </div>
 
-              <h2 className="mt-6 text-2xl font-bold text-slate-900">{service.title}</h2>
-              <p className="mt-1 text-3xl font-bold text-slate-900">{service.price}</p>
+              <h2 className="mt-6 text-2xl font-bold text-slate-900 dark:text-slate-100">{service.title}</h2>
+              <p className="mt-1 text-3xl font-bold text-slate-900 dark:text-slate-100">{service.price}</p>
               
-              <p className="mt-4 text-sm leading-relaxed text-slate-500">
+              <p className="mt-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                 {service.description}
               </p>
 
-              <ul className="mt-8 flex-grow space-y-4">
+              <ul className="mt-8 grow space-y-4">
                 {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-sm text-slate-700">
+                  <li key={idx} className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                     <svg className="h-4 w-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
@@ -92,7 +91,7 @@ export default function ServicesPage() {
                 ))}
               </ul>
 
-              <button className="mt-10 h-12 w-full rounded-xl bg-slate-900 text-sm font-bold text-white transition-all hover:bg-slate-800 focus:ring-4 focus:ring-slate-900/15">
+              <button className="mt-10 h-12 w-full rounded-xl bg-slate-900 text-sm font-bold text-white transition-all hover:bg-slate-800 focus:ring-4 focus:ring-slate-900/15 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200">
                 Get Started
               </button>
             </div>
