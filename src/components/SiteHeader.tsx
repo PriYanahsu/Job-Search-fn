@@ -27,16 +27,15 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
 };
 
 export function SiteHeader() {
-  const [authed, setAuthed] = useState(() =>
-    typeof window !== "undefined" ? !!getAccessToken() : false,
-  );
-  const [role, setRole] = useState<AuthRole | null>(() =>
-    typeof window !== "undefined" ? getRole() : null,
-  );
+  const [authed, setAuthed] = useState(false);
+  const [role, setRole] = useState<AuthRole | null>(null);
 
   const router = useRouter();
 
   useEffect(() => {
+    setAuthed(!!getAccessToken());
+    setRole(getRole());
+
     const onStorage = (e: StorageEvent) => {
       if (e.key === "token") setAuthed(!!e.newValue);
       if (e.key === "role") setRole(getRole());

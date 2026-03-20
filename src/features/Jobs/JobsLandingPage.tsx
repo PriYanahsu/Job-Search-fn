@@ -21,7 +21,7 @@ export default function JobsLandingPage() {
   const query = useMemo(() => ({ q, loc }), [q, loc]);
   const { jobs, rawJobs, loading, error } = useJobs(query);
   const { apply, loadingJobId } = useApplyJob();
-  const { appliedJobIds, loadingApplied, refreshApplied } = useAppliedJobs();
+  const { appliedJobIds, statusByJobId, loadingApplied, refreshApplied } = useAppliedJobs();
   const [activeView, setActiveView] = useState<"dashboard" | "history">("dashboard");
 
   const onApply = async (jobId: number) => {
@@ -31,10 +31,12 @@ export default function JobsLandingPage() {
       return;
     }
     const res = await apply(jobId);
+    if (!res || !res.ok || res.reason === "ALREADY_APPLIED") return;
+
     if (res.ok) {
       void refreshApplied();
     }
-    if (!res.ok && res.reason === "NO_USER") {
+    if (!res.ok) {
       router.push(`/login?next=${encodeURIComponent("/")}`);
     }
   };
@@ -196,7 +198,7 @@ export default function JobsLandingPage() {
                       job={job}
                       onApply={onApply}
                       applying={loadingJobId === job.id}
-                      applied={appliedSet.has(job.id)}
+                      // applied={appliedSet.has(job.id)}
                     />
                   ))}
               </div>
@@ -209,6 +211,7 @@ export default function JobsLandingPage() {
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <AppliedJobsHistory
             appliedJobIds={appliedJobIds}
+            statusByJobId={statusByJobId}
             jobs={rawJobs}
             loading={loadingApplied}
             defaultOpen

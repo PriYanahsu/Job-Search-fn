@@ -21,6 +21,7 @@ export async function addJob(payload: AddJobPayload) {
 
 export type AppliedJobModel = {
   jobId: number;
+  status?: string;
 };
 
 export async function getAppliedJobs(userId: number) {

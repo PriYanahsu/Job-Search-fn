@@ -5,9 +5,9 @@ import { Suspense } from "react";
 
 export default function Page() {
   return (
-    <div className="min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl px-4 py-6">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
         <Suspense fallback={<div className="min-h-screen bg-(--page-bg)" />}>
           <JobsLandingPage />
         </Suspense>
