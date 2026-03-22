@@ -23,7 +23,7 @@ export function useApplyJob() {
         return { ok: true as const };
       }else if(data as string === "You have already applied to this job!"){
         toast.error("You have already applied to this job!");
-        return {ok: false as const, reason: "ALREADY_APPLIED" as cont}
+        return {ok: false as const, reason: "ALREADY_APPLIED" as const}
       }
 
     } catch (e) {
